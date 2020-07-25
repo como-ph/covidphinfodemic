@@ -26,7 +26,13 @@ Description: The COVID-19 pandemic can be characterised by the epidemiological
     We aim to document and analyse this phenomenon in the context of the
     Philippines.
 License: GPL-3
+Imports: 
+    gh,
+    dplyr,
+    magrittr
 Encoding: UTF-8
 Language: en-gb
 LazyData: true
 RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10)
