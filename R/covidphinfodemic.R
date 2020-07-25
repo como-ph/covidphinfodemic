@@ -17,6 +17,9 @@
 #' @docType package
 #' @name covidphinfodemic
 #' @keywords internal
+#' @importFrom magrittr %>%
+#' @importFrom dplyr bind_rows
+#' @importFrom gh gh gh_next
 #'
 #'
 #'
