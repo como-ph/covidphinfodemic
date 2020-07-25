@@ -36,3 +36,5 @@ And the development version from [GitHub](https://github.com/) with:
 if(!require(remotes)) install.packages("remotes")
 remotes::install_github("como-ph/covidphinfodemic")
 ```
+
+## Usage
