@@ -16,3 +16,22 @@
 #
 ################################################################################
 "githubSearch"
+
+
+################################################################################
+#
+#'
+#' Dashboards on COVID-19 specific to the Philippines
+#'
+#' @format A tibble with 152 rows and 6 columns
+#'
+#' @examples
+#' dashboards
+#'
+#' @docType data
+#' @keywords dataset
+#'
+#'
+#
+################################################################################
+"dashboards"
