@@ -1,4 +1,5 @@
 library(rvest)
+library(googlesheets4)
 
 ## Create a subset of githubSearch that provides the information needed
 
@@ -103,12 +104,40 @@ title <- lapply(X = yy, FUN = rvest::html_node, css = "title")
 title <- lapply(X = title, FUN = rvest::html_text)
 title <- unlist(title)
 
+links <- lapply(X = yy, FUN = rvest::html_node, css = ".BorderGrid-cell .mt-3.d-flex.flex-items-center a")
+links <- lapply(X = links, FUN = rvest::html_attr, name = "href")
+links <- unlist(links)
 
+dashboards$dashboard_url[dashboards$dashboard_url == ""] <- links[dashboards$dashboard_url == ""]
 
+dashboards[6, "dashboard_url"] <- "https://coviddetail.com/philippines"
+dashboards[12, "dashboard_url"] <- "https://coronastatus.ph"
+dashboards[18, "dashboard_url"] <- "https://covidph.live/"
+dashboards[19, "dashboard_url"] <- "https://www.facebook.com/covid19phwatch"
+dashboards[22, "dashboard_url"] <- "https://github.com/ericksondelacruz/phcovid19"
+dashboards[23, "dashboard_url"] <- "https://github.com/nt-williams/covid19_data"
+dashboards[24, "dashboard_url"] <- "https://github.com/leixdd/Covid19PH"
+dashboards[25, "dashboard_url"] <- "https://github.com/jms5151/covid19_philippines_autumn_model"
+dashboards[27, "dashboard_url"] <- "https://covid-19-phil.netlify.app/"
+dashboards[37, "dashboard_url"] <- "https://corona-stats.online"
+dashboards[43, "dashboard_url"] <- "https://public.tableau.com/profile/james.faeldon#!/vizhome/PhilippinesCOVID19CostofAssistance/Dashboard"
+dashboards[44, "dashboard_url"] <- "https://github.com/gigerbytes/ncov-ph-data"
+dashboards[44, "dashboard_url"] <- "https://github.com/weward/vue-covid19"
+dashboards[48, "dashboard_url"] <- "https://github.com/amnantolin/COVID19-PH-Tracker-Web-App"
+dashboards[49, "dashboard_url"] <- "http://ph-covid19-cases-monitoring.herokuapp.com/home"
+dashboards[54, "dashboard_url"] <- "http://blog.ayooklik.id"
+dashboards[55, "dashboard_url"] <- "https://covid19ph-live.herokuapp.com"
+dashboards[56, "dashboard_url"] <- "https://covid19-90days-prediction-charts.netlify.app"
+dashboards[60, "dashboard_url"] <- "https://covid19.health"
 
+##
 usethis::use_data(dashboards, overwrite = TRUE, compress = "xz")
 
-
+##
+googlesheets4::gs4_create(name = "phDashboards", sheets = "phDashboards")
+googlesheets4::write_sheet(data = dashboards,
+                           ss = "1J7yS0q8-dAgU-gtjJsxJknGp_0T2oxTdv1RfDBLViAw",
+                           sheet = "phDashboards")
 
 
 
