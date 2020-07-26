@@ -5,16 +5,20 @@ library(rvest)
 df <- githubSearch[ , c("name",
                         "owner.login",
                         "html_url",
-                        "description")]
+                        "description",
+                        "created_at",
+                        "updated_at")]
 
 df <- data.frame(df[ , c("name", "owner.login", "html_url")],
                  dashboard_url = vector(mode = "character", nrow(df)),
                  source = vector(mode = "character", nrow(df)),
-                 df[ , "description"])
+                 df[ , c("description", "created_at", "updated_at")])
 
 df <- tibble::tibble(df)
 
-names(df) <- c("name", "developer", "github_url", "dashboard_url", "source", "description")
+names(df) <- c("name", "developer", "github_url",
+               "dashboard_url", "source", "description",
+               "creation_date", "latest_update")
 
 dashboards <- c("https://ncovtracker.doh.gov.ph/",
                 "https://fassster.ehealth.ph/covid19/",
@@ -35,7 +39,9 @@ x <- data.frame(name = vector(mode = "character", length = length(dashboards)),
                 github_url = vector(mode = "character", length = length(dashboards)),
                 dashboard_url = dashboards,
                 source = vector(mode = "character", length = length(dashboards)),
-                description = vector(mode = "character", length = length(dashboards)))
+                description = vector(mode = "character", length = length(dashboards)),
+                creation_date = vector(mode = "character", length = length(dashboards)),
+                latest_update = vector(mode = "character", length = length(dashboards)))
 
 
 df <- rbind(df, x)
@@ -54,10 +60,10 @@ github_url <- c("https://github.com/kimerran/covid19ph.net",
                 "https://github.com/rbrtbmnglg/_covid19phinfographics",
                 "https://github.com/litemikx/covid19phresources")
 
-dashboard_url <- c("Covid19ph.net",
+dashboard_url <- c("https://covid19ph.net",
                    "https://covid19phunited.web.app/",
-                   "bnhr.xyz/covid19-maps/",
-                   "alexisrequerman.github.io/covid19ph/",
+                   "https://bnhr.xyz/covid19-maps/",
+                   "https://alexisrequerman.github.io/covid19ph/",
                    "https://github.com/leixdd/Covid19PH",
                    "https://chadgotis.github.io/Covid19ph/",
                    "https://covid19ph.github.io",
@@ -77,16 +83,33 @@ z <- data.frame(name = vector(mode = "character", length = length(dashboard_url)
                 developer = vector(mode = "character", length = length(dashboard_url)),
                 github_url, dashboard_url,
                 source = vector(mode = "character", length = length(dashboards)),
-                description = vector(mode = "character", length = length(dashboards)))
+                description = vector(mode = "character", length = length(dashboards)),
+                creation_date = vector(mode = "character", length = length(dashboards)),
+                latest_update = vector(mode = "character", length = length(dashboards)))
 
 
 df <- rbind(df, z)
 
 dashboards <- df
 
+
+## Scrape info from dashboards
+
+xx <- ifelse(dashboards$dashboard_url == "", dashboards$github_url, dashboards$dashboard_url)
+
+yy <- lapply(X = xx, FUN = xml2::read_html)
+
+title <- lapply(X = yy, FUN = rvest::html_node, css = "title")
+title <- lapply(X = title, FUN = rvest::html_text)
+title <- unlist(title)
+
+
+
+
 usethis::use_data(dashboards, overwrite = TRUE, compress = "xz")
 
 
-## Scrape info from dashboards
+
+
 
 
