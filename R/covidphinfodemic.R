@@ -20,6 +20,9 @@
 #' @importFrom magrittr %>%
 #' @importFrom dplyr bind_rows
 #' @importFrom gh gh gh_next
+#' @importFrom rvest html_node html_attr html_text
+#' @importFrom xml2 read_html
+#' @importFrom withr with_envvar
 #'
 #'
 #'

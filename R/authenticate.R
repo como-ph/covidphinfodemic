@@ -18,5 +18,7 @@
 ################################################################################
 
 set_gh_token <- function(token) {
-  Sys.setenv("GITHUB_PAT" = token)
+  withr::with_envvar(
+    Sys.setenv("GITHUB_PAT" = token)
+  )
 }
