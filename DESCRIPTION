@@ -29,7 +29,10 @@ License: GPL-3
 Imports: 
     gh,
     dplyr,
-    magrittr
+    magrittr,
+    rvest,
+    xml2,
+    withr
 Encoding: UTF-8
 Language: en-gb
 LazyData: true
