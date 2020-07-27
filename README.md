@@ -7,6 +7,8 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+![R-CMD-check](https://github.com/como-ph/covidphinfodemic/workflows/R-CMD-check/badge.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/como-ph/covidphinfodemic/badge)](https://www.codefactor.io/repository/github/como-ph/covidphinfodemic)
 <!-- badges: end -->
 
 The COVID-19 pandemic can be characterised by the epidemiological
