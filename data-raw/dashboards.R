@@ -130,6 +130,20 @@ dashboards[55, "dashboard_url"] <- "https://covid19ph-live.herokuapp.com"
 dashboards[56, "dashboard_url"] <- "https://covid19-90days-prediction-charts.netlify.app"
 dashboards[60, "dashboard_url"] <- "https://covid19.health"
 
+## Scrape README from dashboards with GitHub repositories
+
+xx <- dashboards$github_url
+
+xx <- xx %>%
+  stringr::str_remove_all(pattern = "https://github.com/") %>%
+  stringr::str_split(pattern = "/", simplify = TRUE) %>%
+  data.frame() %>%
+  tibble::tibble()
+
+names(xx) <- c("owner", "repo")
+
+yy <- lapply(X = xx, FUN = get_gh_reame)
+
 ##
 usethis::use_data(dashboards, overwrite = TRUE, compress = "xz")
 
@@ -138,6 +152,7 @@ googlesheets4::gs4_create(name = "phDashboards", sheets = "phDashboards")
 googlesheets4::write_sheet(data = dashboards,
                            ss = "1J7yS0q8-dAgU-gtjJsxJknGp_0T2oxTdv1RfDBLViAw",
                            sheet = "phDashboards")
+
 
 
 
