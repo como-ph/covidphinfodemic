@@ -137,7 +137,19 @@ xx <- dashboards$github_url
 xx <- xx %>%
   stringr::str_remove_all(pattern = "https://github.com/")
 
-yy <- lapply(X = xx, FUN = get_gh_readme)
+github_notes <- lapply(X = xx, FUN = get_gh_readme) %>%
+  unlist()
+
+## Scrape other info from the dashboards themselves
+
+xx <- dashboards$dashboard_url
+
+dashboard_notes <- lapply(X = xx, FUN = get_db_text) %>%
+  unlist()
+
+## Add to data
+
+dashboards <- cbind(dashboards, github_notes, dashboard_notes)
 
 ##
 usethis::use_data(dashboards, overwrite = TRUE, compress = "xz")
