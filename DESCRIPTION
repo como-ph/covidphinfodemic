@@ -32,7 +32,9 @@ Imports:
     magrittr,
     rvest,
     xml2,
-    withr
+    withr,
+    httr,
+    stringr
 Encoding: UTF-8
 Language: en-gb
 LazyData: true
