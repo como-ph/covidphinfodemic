@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# covidphinfodemic: Utilities to Search and Extract Metadata from Philippines-Focused Infographics and Dashboards
+# covidphinfodemic: Utilities to Search and Extract Metadata from Philippines-Focused Infographics and Dashboards <img src="man/figures/covidphinfodemic.png" width="200px" align="right" />
 
 <!-- badges: start -->
 

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# covidphinfodemic: Utilities to Search and Extract Metadata from Philippines-Focused Infographics and Dashboards
+# covidphinfodemic: Utilities to Search and Extract Metadata from Philippines-Focused Infographics and Dashboards <img src="man/figures/covidphinfodemic.png" width="200px" align="right" />
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
