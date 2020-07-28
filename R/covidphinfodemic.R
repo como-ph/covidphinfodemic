@@ -23,6 +23,8 @@
 #' @importFrom rvest html_node html_attr html_text
 #' @importFrom xml2 read_html
 #' @importFrom withr with_envvar
+#' @importFrom httr GET authenticate http_error
+#' @importFrom stringr str_split
 #'
 #'
 #'
